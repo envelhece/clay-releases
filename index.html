@@ -328,7 +328,7 @@
               <div class="verify">
                 <b>Conferir o arquivo <span class="muted">(se quiser)</span></b>
                 <p class="muted">SHA-256 do <span data-sha256-file>CLAY-win-Setup.exe</span>: <code class="hash" data-sha256>f07aff74060feff4c057872d9f3d88c814a936980e97faadb7c85eed6071bcba</code></p>
-                <p class="muted">Na pasta do download, clique com o botão direito num espaço vazio, <span class="kbd">Abrir no Terminal</span>, e rode <code>Get-FileHash .\CLAY-win-Setup.exe</code>. Se não bater com o código acima, apague o arquivo. Os hashes de todos os arquivos estão em <a href="checksums.txt">checksums.txt</a>.</p>
+                <p class="muted">Abra o PowerShell e rode <code>Get-FileHash "$env:USERPROFILE\Downloads\CLAY-win-Setup.exe"</code> (se baixou em outra pasta, troque o caminho). Se não bater com o código acima, apague o arquivo. Os hashes de todos os arquivos estão em <a href="checksums.txt">checksums.txt</a>.</p>
               </div>
             </div>
           </li>
