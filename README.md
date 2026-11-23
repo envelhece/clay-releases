@@ -28,7 +28,8 @@ Esse PC trava no processador, então em PC com placa de vídeo fraca a diferenç
 ## O que ele faz
 
 - **Modo Massinha.** Um botão só. Deixa as texturas lisas (some o granulado do plástico, os pinos e as ondas da água), tira a grama e as nuvens, pinta o céu de cinza e põe a qualidade no mínimo.
-- **Perfis:** PC Fraco, Equilibrado, Máximo FPS, Massinha e Realista. O CLAY olha seu hardware e sugere um.
+- **Configura sozinho.** Na primeira vez ele olha seu PC e ajusta tudo pra mais FPS. Em PC fraco baixa a resolução da tela só enquanto você joga, põe a energia no máximo e desliga a gravação do Xbox. Tudo volta ao normal quando o Roblox fecha.
+- **Perfis:** PC Fraco, Equilibrado, Máximo FPS, Massinha e Realista.
 - **Painel com Page Up.** Aperta Page Up dentro do jogo, troca o gráfico e o CLAY reabre o Roblox no mesmo servidor.
 - FPS destravado pelo mesmo limite do menu do jogo, tela cheia exclusiva e as otimizações de tela cheia do Windows desligadas só pro Roblox.
 - Fica na bandeja segurando o Roblox em prioridade alta.
