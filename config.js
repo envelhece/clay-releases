@@ -7,7 +7,7 @@
  */
 window.CLAY = {
   DOWNLOAD_URL: "https://github.com/envelhece/clay-releases/releases/latest/download/CLAY-win-Setup.exe",
-  VERSION: "1.0.3",
-  SHA256: "882d24990ff67b310f67b96c87da691de773e048086f5d04f7b4d3417775ae09",
+  VERSION: "1.0.4",
+  SHA256: "bde73048e6ad2c7f78ea92d79320ae6569e3e5112def5c00a735f4d3913aba3b",
   SHA256_FILE: "CLAY-win-Setup.exe"
 };
