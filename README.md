@@ -53,13 +53,13 @@ Pra tirar, desinstala pelo Windows em Configurações > Aplicativos. O Roblox vo
 <summary>Conferir se o arquivo é o original</summary>
 <br>
 
-O SHA-256 do instalador fica nas notas de cada [versão](https://github.com/envelhece/clay-releases/releases/latest) e no site. Na pasta do download, abre o terminal e roda:
+O SHA-256 do instalador fica nas notas de cada [versão](https://github.com/envelhece/clay-releases/releases/latest) e no site. Abre o PowerShell e roda:
 
 ```powershell
-Get-FileHash .\CLAY-win-Setup.exe
+Get-FileHash "$env:USERPROFILE\Downloads\CLAY-win-Setup.exe"
 ```
 
-Se não bater, apaga o arquivo sem abrir.
+Se você baixou em outra pasta, troca o caminho. Se o código não bater, apaga o arquivo sem abrir.
 </details>
 
 ## Dá ban?
