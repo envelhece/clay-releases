@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CLAY — Launcher gratuito para Roblox focado em FPS</title>
+  <meta name="description" content="CLAY é um launcher gratuito para Roblox no Windows. Modo Massinha: gráfico liso e FPS no máximo, usando só configurações oficiais do Roblox.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CLAY — Launcher gratuito para Roblox focado em FPS">
+  <meta property="og:description" content="Modo Massinha: gráfico liso, FPS no máximo. Windows 10/11 · gratuito · sem anúncios.">
+  <meta property="og:image" content="https://envelhece.github.io/clay-releases/og.png">
+  <meta property="og:url" content="https://envelhece.github.io/clay-releases/">
+  <link rel="canonical" href="https://envelhece.github.io/clay-releases/">
+  <!-- GitHub Pages can't send HTTP headers: the same rules as _headers, as far as a meta tag allows. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/early.js"></script>
+  <script src="config.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/hero-bg.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- Ícones (mesmo traço do app) -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="mark" viewBox="0 0 24 24"><path d="M9 3H15A6 6 0 0 1 21 9V9.5H14.5A2.5 2.5 0 0 0 14.5 14.5H21V15A6 6 0 0 1 15 21H9A6 6 0 0 1 3 15V9A6 6 0 0 1 9 3Z" fill="currentColor"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></symbol>
+  <symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4.5 17a7.5 7.5 0 1 1 15 0"/><path d="M12 17l3.6-4.6"/><circle cx="12" cy="17" r="1.1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-fps" viewBox="0 0 24 24"><path d="M4 18V6M4 18h16"/><path d="m7.5 14 3.5-4 3 2.5 4.5-5.5"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 4 8.5 4.5L12 13 3.5 8.5z"/><path d="m3.5 12.5 8.5 4.5 8.5-4.5"/></symbol>
+  <symbol id="i-sky" viewBox="0 0 24 24"><path d="M7 17.5h10a3.5 3.5 0 0 0 .4-7 5.5 5.5 0 0 0-10.6 1A3 3 0 0 0 7 17.5z"/><path d="M4 4l16 16"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3.5 5.5 13.5h6L11 20.5l7.5-10h-6z"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9.5 3.5v3M14.5 3.5v3M9.5 17.5v3M14.5 17.5v3M3.5 9.5h3M3.5 14.5h3M17.5 9.5h3M17.5 14.5h3"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 4.2 2.35 4.9 5.35.7-3.9 3.7 1 5.3L12 16.2l-4.8 2.6 1-5.3-3.9-3.7 5.35-.7z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M3.5 14.5h17M7 7h.01M7 12h.01M7 17h.01"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.6 2.4 2.6 13.6 0 16M12 4c-2.6 2.4-2.6 13.6 0 16"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v8.5A1.5 1.5 0 0 1 19 17h-8l-4.5 3.5V17H5a1.5 1.5 0 0 1-1.5-1.5V7A1.5 1.5 0 0 1 5 5.5z"/><path d="M8 11.2h.01M12 11.2h.01M16 11.2h.01"/></symbol>
+  <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M6 4l12 7.2-5.3 1.3L10 18z"/><path d="m12.7 12.5 4 5"/></symbol>
+  <symbol id="i-broom" viewBox="0 0 24 24"><path d="M19.5 4.5 13 11"/><path d="M11.5 9.5l3 3c.6.6.6 1.5 0 2.1L12 17l-5-5 2.4-2.5c.6-.6 1.5-.6 2.1 0z"/><path d="M7 12l-3.5 3.5c1 2.5 2.5 4 5 5L12 17"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.8 5.5 6.3v5.2c0 4.1 2.8 7.4 6.5 8.7 3.7-1.3 6.5-4.6 6.5-8.7V6.3z"/><path d="m9.2 12.2 2 2 3.8-3.9"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3.5h7l4.5 4.5v11a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5z"/><path d="M13.5 3.5V8.5h5"/><path d="m9 13 6 6M15 13l-6 6" opacity="0"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 19.5c1-3.5 3.8-5 7-5s6 1.5 7 5"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="12" r="3.5"/><path d="M11.5 12h9M17.5 12v3M20.5 12v2.5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4 21 19.5H3z"/><path d="M12 10v4.2M12 17h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5.5 12.5 4 4 9-9"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9.5 6.5 15 12l-5.5 5.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+</svg>
+
+<header class="nav" id="topo">
+  <div class="wrap nav-in">
+    <a class="brand" href="#topo" aria-label="CLAY, início">
+      <svg class="mark" aria-hidden="true"><use href="#mark"/></svg><b>CLAY</b>
+    </a>
+    <nav class="nav-links" aria-label="Seções">
+      <a href="#comparacao">Comparação</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#seguranca">Segurança</a>
+      <a href="#instalar">Instalar</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn primary sm" href="#instalar" data-download>
+      <svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>Baixar
+    </a>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-in">
+      <div class="hero-brand">
+        <svg class="hero-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path class="hm-fill" fill="currentColor" d="M9 3H15A6 6 0 0 1 21 9V9.5H14.5A2.5 2.5 0 0 0 14.5 14.5H21V15A6 6 0 0 1 15 21H9A6 6 0 0 1 3 15V9A6 6 0 0 1 9 3Z"/>
+          <path class="hm-line" pathLength="1" d="M9 3H15A6 6 0 0 1 21 9V15A6 6 0 0 1 15 21H9A6 6 0 0 1 3 15V9A6 6 0 0 1 9 3Z"/>
+        </svg>
+        <span class="wordmark">CLAY</span>
+      </div>
+      <h1 id="hero-title"><span class="w">Launcher</span> <span class="w">gratuito</span> <span class="w">para</span> <span class="w">Roblox</span> <span class="w">focado</span> <span class="w">em</span> <span class="w">FPS</span></h1>
+      <p class="lead">Ligue o Modo Massinha: gráfico liso como massinha de modelar e FPS no máximo, usando apenas configurações oficiais do Roblox.</p>
+      <div class="hero-cta">
+        <a class="btn primary lg" href="#instalar" data-download>
+          <svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>Baixar para Windows
+        </a>
+        <a class="btn ghost lg" href="#comparacao">Ver antes e depois</a>
+      </div>
+      <p class="meta">Windows 10/11 · gratuito · sem anúncios <span class="sep" aria-hidden="true">·</span> <span>versão <span data-version>1.0.0</span></span></p>
+
+      <div class="hero-stage">
+      <figure class="hero-shot">
+        <picture>
+          <source type="image/webp" srcset="img/run-launcher-massinha-680.webp">
+          <img src="img/run-launcher-massinha-680.png" width="680" height="360"
+               alt="Janela principal do CLAY: botão Iniciar Roblox, interruptor do Modo Massinha ligado e acesso às Configurações." fetchpriority="high">
+        </picture>
+      </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Antes e depois -->
+  <section class="section" id="comparacao" aria-labelledby="cmp-title">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <p class="eyebrow"><span class="n">01</span>Antes e depois</p>
+        <h2 id="cmp-title">FPS de verdade, medido no jogo.</h2>
+        <p class="sub">Gráfico padrão contra o Modo Massinha no mesmo servidor, e o máximo que tiramos num mapa vazio. O número é o contador de FPS do próprio Roblox (Shift+F5).</p>
+      </header>
+
+      <div class="compare reveal" data-compare>
+        <div class="seg" role="group" aria-label="Escolher captura">
+          <button type="button" class="on" aria-pressed="true" data-shot="default">Padrão</button>
+          <button type="button" aria-pressed="false" data-shot="massinha">Modo Massinha</button>
+          <button type="button" aria-pressed="false" data-shot="baseplate">Mapa vazio</button>
+        </div>
+
+        <div class="compare-stage">
+          <figure class="shot" data-shot-panel="default">
+            <picture>
+              <source type="image/webp" sizes="(min-width: 1120px) 1040px, 100vw"
+                      srcset="img/game-default-640.webp 640w, img/game-default-1200.webp 1200w, img/game-default-1920.webp 1920w">
+              <img src="img/game-default-1200.jpg" width="1920" height="1080" loading="lazy" decoding="async"
+                   alt="Captura no Roblox com gráficos padrão: céu com nuvens, sombras e texturas. Contador do Roblox mostra 273 FPS.">
+            </picture>
+            <figcaption><span>Padrão</span><b>273 FPS</b></figcaption>
+          </figure>
+          <figure class="shot" data-shot-panel="massinha">
+            <picture>
+              <source type="image/webp" sizes="(min-width: 1120px) 1040px, 100vw"
+                      srcset="img/game-massinha-640.webp 640w, img/game-massinha-1200.webp 1200w, img/game-massinha-1920.webp 1920w">
+              <img src="img/game-massinha-1200.jpg" width="1920" height="1080" loading="lazy" decoding="async"
+                   alt="Mesma experiência com o Modo Massinha: céu cinza liso, sem nuvens, superfícies lisas. Contador do Roblox mostra 325 FPS.">
+            </picture>
+            <figcaption><span>Modo Massinha</span><b>325 FPS</b></figcaption>
+          </figure>
+          <figure class="shot" data-shot-panel="baseplate">
+            <picture>
+              <source type="image/webp" sizes="(min-width: 1120px) 1040px, 100vw"
+                      srcset="img/game-baseplate-640.webp 640w, img/game-baseplate-1200.webp 1200w, img/game-baseplate-1920.webp 1920w">
+              <img src="img/game-baseplate-1200.jpg" width="1920" height="1080" loading="lazy" decoding="async"
+                   alt="Modo Massinha num mapa vazio (Baseplate): chão cinza liso e céu cinza. Contador do Roblox mostra 710 FPS.">
+            </picture>
+            <figcaption><span>Modo Massinha · mapa vazio</span><b>710 FPS</b></figcaption>
+          </figure>
+        </div>
+
+        <dl class="fps-bars" aria-label="FPS medido nas duas capturas">
+          <div class="bar-row" data-bar="default">
+            <dt>Padrão</dt>
+            <dd><span class="bar"><i class="w-273"></i></span><b class="num">273 FPS</b></dd>
+          </div>
+          <div class="bar-row" data-bar="massinha">
+            <dt>Modo Massinha</dt>
+            <dd><span class="bar"><i class="w-325"></i></span><b class="num">325 FPS</b></dd>
+          </div>
+          <div class="bar-row" data-bar="baseplate">
+            <dt>Mapa vazio</dt>
+            <dd><span class="bar"><i class="w-710"></i></span><b class="num">710 FPS</b></dd>
+          </div>
+        </dl>
+        <p class="note">Medido em um PC com Ryzen 5 4600G, RTX 5060 e 16 GB, em 1080p. Servidor cheio: Crossroads. Mapa vazio: Baseplate. O resultado varia conforme o processador, a placa de vídeo e o jogo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recursos -->
+  <section class="section" id="recursos" aria-labelledby="feat-title">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <p class="eyebrow"><span class="n">02</span>Recursos</p>
+        <h2 id="feat-title">Tudo que pesa, desligado em um clique.</h2>
+        <p class="sub">E o resto que um launcher precisa ter, sem telas poluídas.</p>
+      </header>
+
+      <div class="feat-grid">
+        <div class="feat-col"><div class="reveal">
+          <h3 class="group-title">Desempenho</h3>
+          <ul class="group">
+            <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-contrast"/></svg></span>
+              <div class="tx"><span class="t">Modo Massinha</span><span class="s">Texturas lisas, sem grama, céu cinza e qualidade mínima. Um interruptor só.</span></div></li>
+            <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-gauge"/></svg></span>
+              <div class="tx"><span class="t">Perfis de desempenho</span><span class="s">PC Fraco, Equilibrado, Máximo FPS e Massinha. O CLAY detecta seu hardware e recomenda um.</span></div></li>
+            <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-fps"/></svg></span>
+              <div class="tx"><span class="t">FPS sem limite</span><span class="s">Usa a configuração oficial de limite de FPS do Roblox, a mesma do menu do jogo.</span></div></li>
+            <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg></span>
+              <div class="tx"><span class="t">Texturas lisas</span><span class="s">Tira o granulado do plástico, os pinos e as ondas da água.</span></div></li>
+            <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-sky"/></svg></span>
+              <div class="tx"><span class="t">Céu cinza sem nuvens</span><span class="s">Céu liso e nuvens zeradas: menos coisa para desenhar a cada quadro.</span></div></li>
+            <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-bolt"/></svg></span>
+              <div class="tx"><span class="t">Menos input lag</span><span class="s">Tela cheia exclusiva e otimizações de tela cheia do Windows desligadas só para o Roblox.</span></div></li>
+            <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-cpu"/></svg></span>
+              <div class="tx"><span class="t">Prioridade alta pela bandeja</span><span class="s">O CLAY fica na bandeja e mantém o Roblox em prioridade alta, usando a GPU de alto desempenho.</span></div></li>
+          </ul>
+        </div></div>
+
+        <div class="feat-col">
+          <div class="reveal">
+            <h3 class="group-title">Experiências e servidores</h3>
+            <ul class="group">
+              <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg></span>
+                <div class="tx"><span class="t">Favoritas e atalhos</span><span class="s">Abra suas experiências direto pelo CLAY e crie atalhos na área de trabalho.</span></div></li>
+              <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-list"/></svg></span>
+                <div class="tx"><span class="t">Navegador de servidores</span><span class="s">Veja os servidores públicos, do mais cheio ao mais vazio, e entre no que quiser.</span></div></li>
+              <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></span>
+                <div class="tx"><span class="t">Local do servidor</span><span class="s">Um aviso discreto diz onde fica o servidor em que você entrou.</span></div></li>
+              <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg></span>
+                <div class="tx"><span class="t">Discord Rich Presence</span><span class="s">Mostra no seu perfil do Discord o que você está jogando e há quanto tempo.</span></div></li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3 class="group-title">Extras</h3>
+            <ul class="group">
+              <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-cursor"/></svg></span>
+                <div class="tx"><span class="t">Mods cosméticos</span><span class="s">Cursor, fonte e som personalizados, com backup e restauração.</span></div></li>
+              <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-broom"/></svg></span>
+                <div class="tx"><span class="t">Limpador</span><span class="s">Apaga logs antigos e arquivos temporários do Roblox e mostra quanto espaço liberou.</span></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Perfis -->
+      <div class="profiles reveal" aria-labelledby="prof-title">
+        <h3 id="prof-title" class="group-title">Perfis</h3>
+        <ol class="prof-list">
+          <li><span class="radio" aria-hidden="true"></span><div><b>PC Fraco</b><span>Estável em computadores modestos</span></div></li>
+          <li><span class="radio" aria-hidden="true"></span><div><b>Equilibrado</b><span>Mais FPS sem perder nitidez</span></div></li>
+          <li><span class="radio" aria-hidden="true"></span><div><b>Máximo FPS</b><span>Qualidade mínima, texturas legíveis</span></div></li>
+          <li class="on"><span class="radio" aria-hidden="true"></span><div><b>Massinha</b><span>Tudo no mínimo: liso, sem grama, céu cinza</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capturas do app -->
+  <section class="section" id="app" aria-labelledby="app-title">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <p class="eyebrow"><span class="n">03</span>O app</p>
+        <h2 id="app-title">Poucas telas. Cada uma com um motivo.</h2>
+      </header>
+
+      <div class="gallery reveal" data-tabs>
+        <div class="seg" role="tablist" aria-label="Telas do CLAY">
+          <button type="button" role="tab" id="tab-inicio" aria-controls="pane-inicio" aria-selected="true" class="on">Início</button>
+          <button type="button" role="tab" id="tab-perf" aria-controls="pane-perf" aria-selected="false" tabindex="-1">Performance</button>
+          <button type="button" role="tab" id="tab-gfx" aria-controls="pane-gfx" aria-selected="false" tabindex="-1">Graphics</button>
+          <button type="button" role="tab" id="tab-cfg" aria-controls="pane-cfg" aria-selected="false" tabindex="-1">Configurações</button>
+        </div>
+
+        <div class="gallery-stage">
+          <figure class="pane pane-small" id="pane-inicio" role="tabpanel" aria-labelledby="tab-inicio">
+            <picture>
+              <source type="image/webp" srcset="img/run-launcher-massinha-680.webp">
+              <img src="img/run-launcher-massinha-680.png" width="680" height="360" loading="lazy" decoding="async"
+                   alt="Tela inicial do CLAY com Iniciar Roblox, Modo Massinha ligado e Configurações.">
+            </picture>
+            <figcaption>Início: abrir o Roblox e ligar o Modo Massinha.</figcaption>
+          </figure>
+          <figure class="pane" id="pane-perf" role="tabpanel" aria-labelledby="tab-perf">
+            <picture>
+              <source type="image/webp" sizes="(min-width: 1120px) 1040px, 100vw" srcset="img/run-perf-600.webp 600w, img/run-perf-1100.webp 1100w">
+              <img src="img/run-perf-1100.webp" width="1100" height="720" loading="lazy" decoding="async"
+                   alt="Tela Performance: perfis PC Fraco, Equilibrado, Máximo FPS e Massinha, hardware detectado com perfil recomendado, prioridade alta e GPU de alto desempenho.">
+            </picture>
+            <figcaption>Performance: perfis, hardware detectado e ajustes do Windows.</figcaption>
+          </figure>
+          <figure class="pane" id="pane-gfx" role="tabpanel" aria-labelledby="tab-gfx">
+            <picture>
+              <source type="image/webp" sizes="(min-width: 1120px) 1040px, 100vw" srcset="img/run-gfx3-600.webp 600w, img/run-gfx3-1100.webp 1100w">
+              <img src="img/run-gfx3-1100.webp" width="1100" height="720" loading="lazy" decoding="async"
+                   alt="Tela Graphics: grama, iluminação, céu cinza liso, anti-aliasing, limite de FPS sem limite, resolução, API gráfica, tela cheia exclusiva e otimizações de tela cheia.">
+            </picture>
+            <figcaption>Graphics: só ajustes que o Roblox permite alterar.</figcaption>
+          </figure>
+          <figure class="pane" id="pane-cfg" role="tabpanel" aria-labelledby="tab-cfg">
+            <picture>
+              <source type="image/webp" sizes="(min-width: 1120px) 1040px, 100vw" srcset="img/run-cfg-600.webp 600w, img/run-cfg-1100.webp 1100w">
+              <img src="img/run-cfg-1100.webp" width="1100" height="720" loading="lazy" decoding="async"
+                   alt="Tela Configurações: iniciar com o Windows, fechar o CLAY ao abrir o Roblox, versão, idioma, reduzir animações e confirmação de perfil.">
+            </picture>
+            <figcaption>Configurações: inicialização, idioma e preferências.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Segurança -->
+  <section class="section" id="seguranca" aria-labelledby="safe-title">
+    <div class="wrap split">
+      <header class="sec-head reveal">
+        <p class="eyebrow"><span class="n">04</span>Segurança</p>
+        <h2 id="safe-title">É seguro?</h2>
+        <p class="sub">O CLAY só mexe no que o Roblox deixa mexer. O que ele faz e o que ele não faz:</p>
+        <p class="sub small">O Roblox afirmou publicamente que launchers que não modificam o binário do cliente não são afetados pelas suas medidas contra modificações. Ainda assim, nenhum programa de terceiros vem com garantia: as regras do Roblox podem mudar.</p>
+      </header>
+      <ul class="group reveal">
+        <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span>
+          <div class="tx"><span class="t">Só configurações oficiais</span><span class="s">Usa apenas Fast Flags da lista permitida pelo Roblox e as opções do próprio jogo.</span></div></li>
+        <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-file"/></svg></span>
+          <div class="tx"><span class="t">Não modifica o jogo</span><span class="s">Não altera o executável nem a memória do Roblox. Nada de injeção.</span></div></li>
+        <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></span>
+          <div class="tx"><span class="t">Uma instância só</span><span class="s">Sem multi-instância, sem anti-AFK, sem reentrada automática.</span></div></li>
+        <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></span>
+          <div class="tx"><span class="t">Não guarda seu login</span><span class="s">Nenhum cookie da sua conta é armazenado pelo CLAY.</span></div></li>
+        <li class="row"><span class="ibox"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></span>
+          <div class="tx"><span class="t">Sem vantagem em jogo</span><span class="s">Não remove neblina nem paredes. O Modo Massinha muda só o visual.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Instalação -->
+  <section class="section" id="instalar" aria-labelledby="inst-title">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <p class="eyebrow"><span class="n">05</span>Instalação</p>
+        <h2 id="inst-title">Pronto em um minuto.</h2>
+      </header>
+
+      <div class="install">
+        <ol class="steps reveal">
+          <li>
+            <span class="step-n" aria-hidden="true">1</span>
+            <div><b>Baixe o instalador</b>
+              <p>O arquivo <code>CLAY-win-Setup.exe</code>, sempre por este site.</p>
+              <a class="btn primary" href="#instalar" data-download><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>Baixar CLAY</a>
+              <div class="verify">
+                <b>Verificar integridade <span class="muted">(opcional)</span></b>
+                <p class="muted">Para ter certeza de que o arquivo é o oficial e não foi alterado, compare o SHA-256 dele com o publicado neste site<span data-sha256-wrap hidden> para <span data-sha256-file>CLAY-win-Setup.exe</span>: <code class="hash" data-sha256></code></span>. Todos os arquivos oficiais estão em <a href="checksums.txt">checksums.txt</a>.</p>
+                <p class="muted">Na pasta do download, clique com o botão direito num espaço vazio, escolha <span class="kbd">Abrir no Terminal</span> e digite <code>Get-FileHash .\CLAY-win-Setup.exe</code>. Esse comando só lê o arquivo e é opcional. Se o resultado for diferente do publicado aqui, apague o arquivo sem abrir.</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">2</span>
+            <div><b>Passe pelo aviso do Windows</b>
+              <p>Se aparecer “O Windows protegeu o computador”, clique em <span class="kbd">Mais informações</span> e depois em <span class="kbd">Executar assim mesmo</span>.</p>
+              <p class="muted">O aviso do SmartScreen aparece porque o CLAY ainda não tem assinatura digital e é um programa novo.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">3</span>
+            <div><b>Instale</b>
+              <p>Siga o instalador. O CLAY aparece no menu Iniciar.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-n" aria-hidden="true">4</span>
+            <div><b>Jogue</b>
+              <p>Abra o CLAY, ligue o Modo Massinha e clique em <span class="kbd">Iniciar Roblox</span>.</p>
+            </div>
+          </li>
+        </ol>
+
+        <aside class="reqs reveal" aria-labelledby="req-title">
+          <h3 id="req-title" class="group-title">Requisitos</h3>
+          <ul class="group">
+            <li class="row compact"><svg class="ic tick" aria-hidden="true"><use href="#i-check"/></svg><span class="t">Windows 10 ou 11, 64 bits</span></li>
+            <li class="row compact"><svg class="ic tick" aria-hidden="true"><use href="#i-check"/></svg><span class="t">Roblox instalado</span></li>
+            <li class="row compact"><svg class="ic tick" aria-hidden="true"><use href="#i-check"/></svg><span class="t">Internet para os recursos online</span></li>
+          </ul>
+
+          <div class="warn" role="note">
+            <svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg>
+            <div>
+              <b>Baixe só por este site</b>
+              <p>Repositórios, vídeos ou posts que oferecem um “CLAY” ou outro launcher pedindo para colar um comando no PowerShell são golpe e instalam malware. O CLAY nunca pede para você rodar comandos, e o código dele não é público: “código-fonte do CLAY” por aí é falso.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap split">
+      <header class="sec-head reveal">
+        <p class="eyebrow"><span class="n">06</span>Dúvidas</p>
+        <h2 id="faq-title">Perguntas frequentes</h2>
+      </header>
+      <div class="faq reveal">
+        <details>
+          <summary>Posso ser banido por usar o CLAY?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="ans"><p>O CLAY usa só o que o Roblox permite: Fast Flags da lista oficial e configurações do próprio jogo. Ele não altera o executável nem a memória, e o Roblox disse que launchers que não modificam o cliente não são afetados. Não existe garantia absoluta para nenhum programa de terceiros, mas o CLAY foi feito para ficar dentro das regras.</p></div>
+        </details>
+        <details>
+          <summary>Aumenta o FPS em qualquer PC?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="ans"><p>Não dá para prometer isso. O ganho depende principalmente do processador, e também da placa de vídeo e do jogo. Em PCs em que o gráfico é o gargalo, a diferença costuma ser maior; se o processador já está no limite, cortar gráficos ajuda menos. Na nossa captura foi de 273 para 325 FPS num servidor cheio, e chegou a 710 FPS num mapa vazio; no seu PC pode ser mais ou menos.</p></div>
+        </details>
+        <details>
+          <summary>Funciona junto com o Bloxstrap?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="ans"><p>Os dois podem ficar instalados, mas use um de cada vez para abrir o Roblox. Ambos gravam configurações do Roblox, então o último a abrir o jogo é o que vale.</p></div>
+        </details>
+        <details>
+          <summary>Como desfaço tudo?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="ans"><p>Em Configurações → Performance, clique em <span class="kbd">Restaurar padrões</span>. Os ajustes voltam ao normal e os mods cosméticos são restaurados a partir do backup. Para remover o CLAY, restaure os padrões e depois desinstale pelo Windows em Configurações → Aplicativos.</p></div>
+        </details>
+        <details>
+          <summary>Por que o Windows avisa ao abrir o instalador?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="ans"><p>O SmartScreen avisa sobre programas novos e sem assinatura digital. Clique em <span class="kbd">Mais informações</span> → <span class="kbd">Executar assim mesmo</span>. Isso só vale para o arquivo baixado deste site.</p></div>
+        </details>
+        <details>
+          <summary>É grátis mesmo?<svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <div class="ans"><p>Sim. Sem anúncios e sem versão paga.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Novidades (edite a cada versão) -->
+  <section class="section" id="novidades" aria-labelledby="log-title">
+    <div class="wrap split">
+      <header class="sec-head reveal">
+        <p class="eyebrow"><span class="n">07</span>Novidades</p>
+        <h2 id="log-title">Changelog</h2>
+      </header>
+      <ol class="changelog reveal">
+        <li>
+          <div class="ver"><b>1.0.0</b></div>
+          <p>Primeira versão pública.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="final" aria-labelledby="final-title">
+    <div class="wrap final-in reveal">
+      <svg class="final-mark" aria-hidden="true"><use href="#mark"/></svg>
+      <h2 id="final-title">Roblox mais leve, hoje.</h2>
+      <a class="btn primary lg" href="#instalar" data-download>
+        <svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>Baixar para Windows
+      </a>
+      <p class="meta">Windows 10/11 · gratuito · sem anúncios</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-top">
+      <a class="brand" href="#topo" aria-label="CLAY, voltar ao topo">
+        <svg class="mark" aria-hidden="true"><use href="#mark"/></svg><b>CLAY</b>
+      </a>
+      <nav class="foot-links" aria-label="Rodapé">
+        <a href="#recursos">Recursos</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#instalar">Instalar</a>
+        <a href="#faq">FAQ</a>
+        <a href="#novidades">Changelog</a>
+      </nav>
+    </div>
+    <p class="disclaimer">CLAY é um projeto independente e não é afiliado, endossado ou patrocinado pela Roblox Corporation. Roblox é uma marca registrada da Roblox Corporation.</p>
+    <p class="fine">Versão <span data-version>1.0.0</span> · Windows 10/11</p>
+  </div>
+</footer>
+</body>
+</html>
