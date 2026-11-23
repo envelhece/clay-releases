@@ -237,7 +237,7 @@ h2{font-family:var(--display);font-weight:600;letter-spacing:-.022em;line-height
 .feat-col{display:flex;flex-direction:column;gap:24px}
 
 .profiles{margin-top:40px}
-.prof-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:6px;border:1px solid var(--border);border-radius:var(--r-panel);background:var(--surface)}
+.prof-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:6px;border:1px solid var(--border);border-radius:var(--r-panel);background:var(--surface)}
 .prof-list li{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:8px;transition:background-color .3s ease}
 .prof-list li.on{background:var(--gray)}
 .prof-list b{display:block;font-size:14px;font-weight:500}
@@ -306,6 +306,12 @@ h2{font-family:var(--display);font-weight:600;letter-spacing:-.022em;line-height
 }
 @keyframes ansIn{from{opacity:0;transform:translateY(-6px)}}
 .ans p{color:var(--muted);font-size:15px}
+
+/* ---------- texto corrido ---------- */
+.prose{max-width:620px}
+.prose p{font-size:16px;line-height:1.65}
+.prose p+p{margin-top:16px}
+.prose p.muted{color:var(--muted);font-size:14.5px}
 
 /* ---------- changelog ---------- */
 .changelog{border-top:1px solid var(--border)}
