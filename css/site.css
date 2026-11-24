@@ -462,3 +462,22 @@ h2{font-family:var(--display);font-weight:600;letter-spacing:-.022em;line-height
 
 /* ---------- Christmas snow (js/snow.js) ---------- */
 .snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
+
+/* ---------- Christmas theme (html.xmas, set by js/snow.js in season) ---------- */
+.xmas .mark,.xmas .final-mark,.xmas .hero-mark{overflow:visible}
+.xmas .btn.primary{background:#E53935;border-color:#E53935;color:#fff}
+.xmas .btn.primary:hover{background:#f04b47;border-color:#f04b47}
+.xmas .btn.primary .ic{color:#fff}
+.xmas-greet{color:#FFC95C}
+.xmas-lights{position:absolute;left:0;right:0;top:8px;height:34px;display:flex;justify-content:space-around;pointer-events:none;
+  background:radial-gradient(ellipse 60% 26px at 50% -6px,transparent 96%,#3a3a3a 97%,transparent 100%) 0 0/52px 34px repeat-x}
+.xmas-lights i{display:block;width:8px;height:11px;border-radius:50% 50% 45% 45%;margin-top:12px;position:relative}
+.xmas-lights i::before{content:"";position:absolute;left:2px;top:-3px;width:4px;height:3px;background:#555;border-radius:1px}
+.xmas-lights .b0{background:#F0443A;box-shadow:0 0 12px 2px rgba(240,68,58,.55)}
+.xmas-lights .b1{background:#2EC46A;box-shadow:0 0 12px 2px rgba(46,196,106,.55)}
+.xmas-lights .b2{background:#FFC43D;box-shadow:0 0 12px 2px rgba(255,196,61,.55)}
+.xmas-lights .b3{background:#4A9BFF;box-shadow:0 0 12px 2px rgba(74,155,255,.55)}
+@media (prefers-reduced-motion:no-preference){
+  .xmas-lights i{animation:xmas-twinkle 2.2s ease-in-out infinite}
+}
+@keyframes xmas-twinkle{0%,100%{opacity:1}50%{opacity:.35;box-shadow:none}}
