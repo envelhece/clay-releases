@@ -34,6 +34,7 @@ Esse PC trava no processador, então em PC com placa de vídeo fraca a diferenç
 - **Importar Fast Flags** por sua conta. O CLAY grava como você colar, e o Roblox ignora as que não estão na lista oficial.
 - FPS destravado pelo mesmo limite do menu do jogo, tela cheia exclusiva e as otimizações de tela cheia do Windows desligadas só pro Roblox.
 - Fica na bandeja segurando o Roblox em prioridade alta.
+- Se quiser, o botão Jogar do site do Roblox passa pelo CLAY, então o jogo abre com as suas configurações mesmo depois de uma atualização do Roblox.
 - Favoritas, atalho na área de trabalho, tempo jogado de cada experiência, lista de servidores do mais cheio ao mais vazio, região do servidor e status no Discord.
 - Mods de cursor, fonte e som (guarda os originais) e limpeza de logs velhos.
 - Quando sai versão nova, avisa assim que abre.
