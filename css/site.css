@@ -478,7 +478,5 @@ h2{font-family:var(--display);font-weight:600;letter-spacing:-.022em;line-height
 .xmas-lights .b1{background:#2EC46A;box-shadow:0 0 12px 2px rgba(46,196,106,.55)}
 .xmas-lights .b2{background:#FFC43D;box-shadow:0 0 12px 2px rgba(255,196,61,.55)}
 .xmas-lights .b3{background:#4A9BFF;box-shadow:0 0 12px 2px rgba(74,155,255,.55)}
-@media (prefers-reduced-motion:no-preference){
-  .xmas-lights i{animation:xmas-twinkle 2.2s ease-in-out infinite}
-}
+.xmas-lights i{animation:xmas-twinkle 2.2s ease-in-out infinite!important}
 @keyframes xmas-twinkle{0%,100%{opacity:1}50%{opacity:.35;box-shadow:none}}

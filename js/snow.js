@@ -1,5 +1,5 @@
 /* Christmas theme: snow crystals and soft distant flakes, December 1st to January 6th (preview with ?natal=1).
-   Still flakes for people who ask the system for less motion; pauses while the tab is hidden. */
+   Always falls (even with the Windows animation effects off); pauses while the tab is hidden. */
 (function () {
   "use strict";
   var now = new Date();
@@ -51,14 +51,14 @@
     for (var i = 0; i < n; i++) {
       var b = document.createElement("i");
       b.className = "b" + (i % 4);
-      b.style.animationDelay = (i * 0.37 % 2.2).toFixed(2) + "s";
+      b.style.setProperty("animation-delay", (i * 0.37 % 2.2).toFixed(2) + "s", "important");
       lights.appendChild(b);
     }
     hero.insertBefore(lights, hero.firstChild);
   }
 
-  // Less motion asked for: the flakes stay still (the theme shows, nothing moves).
-  var still = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  // The snow always falls, like in the CLAY app (it ignores the Windows animation setting too).
+  var still = false;
 
   var canvas = document.createElement("canvas");
   canvas.className = "snow";
