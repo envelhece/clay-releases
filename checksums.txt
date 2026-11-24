@@ -1,6 +1,6 @@
 # CLAY - SHA-256 dos arquivos oficiais / official file hashes
-# Gerado em / generated: 2026-11-24 03:58 UTC
+# Gerado em / generated: 2026-11-24 04:03 UTC
 # Confira / verify:  Get-FileHash .\<arquivo> -Algorithm SHA256
 
-513e85a3f6e136d6e07de8b9652ef7ac0562f5939a15e393de514b3ac3c065f0  CLAY-win-Portable.zip
-229ce06e3082c6cad3f0618c20a20587452886c7a49253ba09b22b79948ca2a9  CLAY-win-Setup.exe
+d27578effaaa988b1df5a9ec81a929af57527941c664f300f2a54fb72a6edb0b  CLAY-win-Portable.zip
+37f074017ebbcfab2b1d15033cb87f896810e7a75c2395f8e34bd748032740fd  CLAY-win-Setup.exe

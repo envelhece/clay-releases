@@ -1,4 +1,4 @@
-/* Christmas theme: light snow from December 1st to January 6th (preview any day with ?natal=1).
+/* Christmas theme: snow crystals and soft distant flakes, December 1st to January 6th (preview with ?natal=1).
    Still flakes for people who ask the system for less motion; pauses while the tab is hidden. */
 (function () {
   "use strict";
@@ -67,38 +67,88 @@
   var ctx = canvas.getContext("2d");
   var flakes = [], w = 0, h = 0, dpr = 1, last = 0, running = true;
 
+  // ---- crystals: six arms with side branches, each one different; drawn once, reused as images ----
+  function rng(seed) { return function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  function crystal(seed, px) {
+    var c = document.createElement("canvas");
+    c.width = c.height = px;
+    var g = c.getContext("2d"), r = px * 0.46, rnd = rng(1000 + seed * 7919);
+    var lines = [[0, 0, 0, -r]];
+    var pairs = 2 + Math.floor(rnd() * 2), ang = (50 + rnd() * 15) * Math.PI / 180;
+    for (var i = 0; i < pairs; i++) {
+      var t = 0.3 + 0.55 * (i + rnd() * 0.4) / pairs;
+      var len = r * (0.42 - 0.3 * t) * (0.8 + rnd() * 0.45), y = -r * t;
+      var dx = Math.sin(ang) * len, dy = -Math.cos(ang) * len;
+      lines.push([0, y, dx, y + dy], [0, y, -dx, y + dy]);
+      if (len > r * 0.2 && rnd() < 0.5) {
+        var tx = dx * 0.55, ty = y + dy * 0.55;
+        lines.push([tx, ty, tx + dx * 0.25, ty - len * 0.32], [-tx, ty, -tx - dx * 0.25, ty - len * 0.32]);
+      }
+    }
+    if (rnd() < 0.6) { var f = r * 0.14; lines.push([0, -r * 0.88, f * 0.8, -r * 0.88 - f], [0, -r * 0.88, -f * 0.8, -r * 0.88 - f]); }
+    g.translate(px / 2, px / 2);
+    g.lineCap = "round"; g.lineJoin = "round";
+    [[r * 0.16, "rgba(255,255,255,.22)"], [r * 0.06, "#fff"]].forEach(function (pass) {
+      g.lineWidth = pass[0]; g.strokeStyle = pass[1];
+      for (var k = 0; k < 6; k++) {
+        g.save(); g.rotate(k * Math.PI / 3);
+        g.beginPath();
+        lines.forEach(function (l) { g.moveTo(l[0], l[1]); g.lineTo(l[2], l[3]); });
+        g.stroke(); g.restore();
+      }
+    });
+    var hr = r * (0.12 + rnd() * 0.08);
+    g.fillStyle = "rgba(255,255,255,.8)";
+    g.beginPath();
+    for (var k2 = 0; k2 < 6; k2++) { var a = Math.PI / 3 * k2 + Math.PI / 6; g[k2 ? "lineTo" : "moveTo"](Math.cos(a) * hr, Math.sin(a) * hr); }
+    g.closePath(); g.fill();
+    return c;
+  }
+  var sprites = [];
+  for (var sIdx = 0; sIdx < 8; sIdx++) sprites.push(crystal(sIdx, 96));
+
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = window.innerWidth; h = window.innerHeight;
     canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var want = Math.min(110, Math.round(w / 14));
+    var want = Math.min(120, Math.round(w / 13));
     while (flakes.length < want) flakes.push(make(Math.random() * h));
     flakes.length = want;
     if (still) draw();
   }
 
+  function make(y) {
+    var near = Math.random() < 0.42;
+    return near ? {
+      s: Math.floor(Math.random() * sprites.length),
+      size: 8 + Math.random() * 12,            // 8–20 px crystals up close
+      v: 22 + Math.random() * 26, drift: 12 + Math.random() * 18,
+      a: 0.55 + Math.random() * 0.4, rot: Math.random() * Math.PI, spin: (Math.random() - 0.5) * 0.9,
+      x: Math.random() * w, y: y, p: Math.random() * Math.PI * 2
+    } : {
+      s: -1, size: 0.7 + Math.random() * 1.6,  // far away: soft dots
+      v: 9 + Math.random() * 14, drift: 5 + Math.random() * 9, a: 0.15 + Math.random() * 0.4,
+      x: Math.random() * w, y: y, p: Math.random() * Math.PI * 2
+    };
+  }
+
   function draw() {
     ctx.clearRect(0, 0, w, h);
     for (var i = 0; i < flakes.length; i++) {
-      var f = flakes[i];
+      var f = flakes[i], x = f.x + Math.sin(f.p) * f.drift;
       ctx.globalAlpha = f.a;
-      ctx.beginPath();
-      ctx.arc(f.x + Math.sin(f.p) * f.drift, f.y, f.r, 0, Math.PI * 2);
-      ctx.fillStyle = "#ffffff";
-      ctx.fill();
+      if (f.s < 0) {
+        ctx.fillStyle = "#fff";
+        ctx.beginPath(); ctx.arc(x, f.y, f.size, 0, Math.PI * 2); ctx.fill();
+      } else {
+        ctx.save();
+        ctx.translate(x, f.y); ctx.rotate(f.rot);
+        ctx.drawImage(sprites[f.s], -f.size, -f.size, f.size * 2, f.size * 2);
+        ctx.restore();
+      }
     }
-  }
-
-  function make(y) {
-    return {
-      x: Math.random() * w, y: y,
-      r: 0.8 + Math.random() * 1.9,
-      v: 14 + Math.random() * 26,
-      drift: 8 + Math.random() * 14,
-      p: Math.random() * Math.PI * 2,
-      a: 0.15 + Math.random() * 0.45
-    };
+    ctx.globalAlpha = 1;
   }
 
   function frame(t) {
@@ -107,8 +157,9 @@
     last = t;
     for (var i = 0; i < flakes.length; i++) {
       var f = flakes[i];
-      f.y += f.v * dt; f.p += dt * 0.8;
-      if (f.y - f.r > h) flakes[i] = make(-4);
+      f.y += f.v * dt; f.p += dt * 0.7;
+      if (f.rot !== undefined) f.rot += f.spin * dt;
+      if (f.y - f.size > h) flakes[i] = make(-20);
     }
     draw();
     requestAnimationFrame(frame);
